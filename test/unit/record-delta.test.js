@@ -10,6 +10,30 @@ await test('#recordDelta()', async t => {
     recordable = new Recordable()
   })
 
+  await t.test('When the key', async t => {
+    await t.test('is set for the first time', async t => {
+      await t.test('returns 0', t => {
+        const result = recordable.recordDelta('baz123')
+
+        t.assert.strictEqual(result, 0)
+      })
+    })
+
+    await t.test('matches with open key', async t => {
+      await t.test('returns the delta', async t => {
+        recordable.recordDelta('baz456')
+
+        await sleep(5)
+
+        const result = recordable.recordDelta('baz456')
+
+        t.assert.ok(result > 0)
+        t.assert.ok(result < 10)
+      })
+    })
+  })
+
+
   await t.test('When key is not passed', async t => {
     t.beforeEach(async () => {
       recordable.recordDelta('bar')

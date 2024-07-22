@@ -32,7 +32,7 @@ class Recordable {
     if (!this.deltaKeys[key]) {
       this.deltaKeys[key] = performance.now()
 
-      return null
+      return 0
     }
 
     const delta = parseInt(performance.now() - this.deltaKeys[key])
@@ -62,16 +62,21 @@ class Recordable {
   plot () {
     const width  = process.stdout.columns - 40
     const height = process.stdout.rows - 15
-    const values = this.toClampedMeans(width)
+    const values = this.toClampedAverages(width)
 
+    console.log(values)
     console.clear()
+
+    if (!values.length)
+      return console.info('not enough data to plot yet ...')
+
     console.log(
       '\n'.repeat(5), asciichart.plot(values,
       { height, colors: [ asciichart.green ] }
     ))
   }
 
-  toClampedMeans(maxLength) {
+  toClampedAverages(maxLength) {
     if (!Number.isSafeInteger(maxLength))
       throw new RangeError('"maxLength" must be a positive integer')
 
