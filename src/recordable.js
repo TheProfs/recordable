@@ -6,6 +6,7 @@ class Recordable {
   constructor({ name, values = [] }  = {}) {
     this.name = name
     this.values = values
+    this.deltaKeys = {}
     this.histogram = values.length
       ? this.#createHistogramFromValues(values)
       : createHistogram()
@@ -24,8 +25,29 @@ class Recordable {
     }
   }
 
-  count() {
-    return this.record(1)
+  recordDelta(key = 'any') {
+    if (typeof key !== 'string')
+      throw new RangeError('"key" must be a string with length')
+
+    if (!this.deltaKeys[key]) {
+      this.deltaKeys[key] = performance.now()
+
+      return null
+    }
+
+    const delta = parseInt(performance.now() - this.deltaKeys[key])
+
+    this.record(delta)
+
+    this.deltaKeys[key] = performance.now()
+
+    return delta
+  }
+
+  tick() {
+    this.record(1)
+
+    return this.values.length
   }
 
   record(val) {
@@ -40,7 +62,7 @@ class Recordable {
   plot () {
     const width  = process.stdout.columns - 40
     const height = process.stdout.rows - 15
-    const values = this.toHistoricalMeans(width)
+    const values = this.toClampedMeans(width)
 
     console.clear()
     console.log(
@@ -49,7 +71,7 @@ class Recordable {
     ))
   }
 
-  toHistoricalMeans(maxLength) {
+  toClampedMeans(maxLength) {
     if (!Number.isSafeInteger(maxLength))
       throw new RangeError('"maxLength" must be a positive integer')
 

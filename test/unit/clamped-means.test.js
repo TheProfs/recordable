@@ -1,7 +1,7 @@
 import test from 'node:test'
 import { Recordable } from '../../index.js'
 
-await test('#toHistoricalMeans(maxLength)', async t => {
+await test('#toClampedMeans(maxLength)', async t => {
   let recordable, result = null
 
   t.beforeEach(() => {
@@ -12,14 +12,14 @@ await test('#toHistoricalMeans(maxLength)', async t => {
     await t.test('is not a positive integer', async t => {
       await t.test('throws an error', t => {
         t.assert.throws(() => {
-          recordable.toHistoricalMeans(0.01)
+          recordable.toClampedMeans(0.01)
         }, { name: 'RangeError' })
       })
     })
 
     await t.test('is valid', async t => {
       await t.test('has no values', async t => {
-        result = recordable.toHistoricalMeans(10)
+        result = recordable.toClampedMeans(10)
 
         await t.test('returns empty array', async t => {
           t.assert.strictEqual(result.length, 0)
@@ -29,7 +29,7 @@ await test('#toHistoricalMeans(maxLength)', async t => {
       await t.test('has 1 value', async t => {
         t.beforeEach(() => {
           recordable.record(15)
-          result = recordable.toHistoricalMeans(10)
+          result = recordable.toClampedMeans(10)
         })
 
         await t.test('returns that 1 value', async t => {
@@ -43,7 +43,7 @@ await test('#toHistoricalMeans(maxLength)', async t => {
           for (let i = 1; i < 1001; i++)
             recordable.record(i)
 
-          result = recordable.toHistoricalMeans(10)
+          result = recordable.toClampedMeans(10)
         })
 
         await t.test('returns count around maxLength', async t => {
@@ -67,7 +67,7 @@ await test('#toHistoricalMeans(maxLength)', async t => {
 
       await t.test('is more than total count of values', async t => {
         t.beforeEach(() => {
-          result = recordable.toHistoricalMeans(2000)
+          result = recordable.toClampedMeans(2000)
 
           for (let i = 1; i < 5 + 1; i++)
             recordable.record(i)
