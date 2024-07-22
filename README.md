@@ -50,9 +50,3 @@ npm run test:coverage
 
 [nicholaswmin]: https://github.com/nicholaswmin
 [license]: ./LICENSE
-
-[esm]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules
-[lint]: https://eslint.org/
-[cql]: https://codeql.github.com/
-[ci]: https://github.com/features/actions
-[cc]: https://www.conventionalcommits.org/en/about/
