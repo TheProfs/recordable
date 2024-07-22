@@ -20,8 +20,6 @@ class Recordable {
       ['stddev', 'ms'],
       ['percentiles', 'ms'],
     ].forEach(([key, postfix]) => {
-      const json = this.histogram.toJSON()
-      const prop = `${key}_${postfix.trim()}`
       if (key !== 'percentiles') {
         ;[key, postfix ? `${key}_${postfix.trim()}` : null].forEach(prop => {
           if (prop) Object.defineProperty(this, prop, {
