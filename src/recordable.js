@@ -60,20 +60,23 @@ class Recordable {
   }
 
   plot () {
-    const width  = process.stdout.columns - 40
-    const height = process.stdout.rows - 15
+    const width  = (process.stdout.columns || 100) - 40
+    const height = (process.stdout.rows || 30) - 15
     const values = this.toClampedAverages(width)
+    const plot   = values.length ? asciichart.plot(values, {
+      height, colors: [ asciichart.green ]
+    }) : null
 
-    console.log(values)
     console.clear()
 
     if (!values.length)
       return console.info('not enough data to plot yet ...')
 
-    console.log(
-      '\n'.repeat(5), asciichart.plot(values,
-      { height, colors: [ asciichart.green ] }
-    ))
+    plot
+      ? console.log('\n'.repeat(5), plot)
+      : console.info('\n'.repeat(5), 'not enough plot data yet ...')
+
+    return plot
   }
 
   toClampedAverages(maxLength) {
