@@ -1,7 +1,6 @@
 import { createHistogram } from 'node:perf_hooks'
 import asciichart from 'asciichart'
 
-const nsToMs = ns => Math.round((ns + Number.EPSILON) * 100) / 100 / 1e+6
 const toDecimal = num => Math.round((num + Number.EPSILON) * 100) / 100
 const nanosToMs = nanos => toDecimal(nanos / 1e+6)
 const nanoKeysToMs = obj => (acc, key) => ({
