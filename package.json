@@ -1,28 +1,32 @@
 {
-  "name": "@{{author}}/{{project}}",
+  "name": "@nicholaswmin/recordable",
   "type": "module",
   "version": "0.1.0",
-  "description": "{{description}}",
+  "description": "recordable histogram",
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test node --test test/index.spec.js",
     "setup": "chmod +x setup.sh && bash setup.sh",
     "test:coverage": "NODE_ENV=test node --test --experimental-test-coverage test/index.spec.js",
-    "checks": "{{eslint-cmd}}npm audit"
+    "checks": "npx eslint && npm audit"
   },
   "engines": {
-    "node": ">={{nodev}}"
+    "node": ">=20"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/{{author}}/{{project}}.git"
+    "url": "git+https://github.com/nicholaswmin/recordable.git"
   },
   "keywords": [],
-  "author": "@{{author}}",
+  "author": "@nicholaswmin",
   "license": "MIT-0",
   "bugs": {
-    "url": "https://github.com/{{author}}/{{project}}/issues"
+    "url": "https://github.com/nicholaswmin/recordable/issues"
   },
-  "homepage": "https://github.com/{{author}}/{{project}}#readme",
-  "devDependencies": {}
+  "homepage": "https://github.com/nicholaswmin/recordable#readme",
+  "devDependencies": {
+    "@eslint/js": "^9.7.0",
+    "eslint": "^9.7.0",
+    "globals": "^15.8.0"
+  }
 }

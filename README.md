@@ -1,28 +1,15 @@
-[//]: # (overview-start)
-ES module template with zero dependencies & zero config.
-
-Includes unit tests, CodeQL & a tiny `git` hook to ensure commit messages 
-follow [conventional commits][cc].
-
-- click: `Use this as a template`
-- run: `npm run setup`
-
-> runs a bash script that sets everything up then deletes itself
----
-[//]: # (overview-end)
-
 [![test-workflow][test-badge]][test-workflow] [![codeql-workflow][codeql-badge]][codeql-workflow]
 
-# esm-zero
+# recordable
 
-> {{description}}
+> recordable histogram
 
 ## Usage
 
 ### Install
 
 ```bash
-npm i @{{author}}/{{project}}
+npm i @nicholaswmin/recordable
 ```
 
 ## Tests
@@ -47,19 +34,19 @@ npm run test:coverage
 
 ## Authors
 
-[@{{author}}][{{author}}]
+[@nicholaswmin][nicholaswmin]
 
 ## License
 
 [MIT-0 "No Attribution" License][license]
 
-[test-badge]: https://img.shields.io/badge/tests:unit-passing-green
-[test-workflow]: https://github.com/{{author}}/{{project}}/actions/workflows/test:unit.yml
+[test-badge]: https://github.com/nicholaswmin/recordable/actions/workflows/test:unit.yml/badge.svg
+[test-workflow]: https://github.com/nicholaswmin/recordable/actions/workflows/test:unit.yml
 
-[codeql-badge]: https://img.shields.io/badge/CodeQL-passing-green
-[codeql-workflow]: https://github.com/{{author}}/{{project}}/actions/workflows/codeql.yml
+[codeql-badge]: https://github.com/nicholaswmin/recordable/actions/workflows/codeql.yml/badge.svg
+[codeql-workflow]: https://github.com/nicholaswmin/recordable/actions/workflows/codeql.yml
 
-[{{author}}]: https://github.com/{{author}}
+[nicholaswmin]: https://github.com/nicholaswmin
 [license]: ./LICENSE
 
 [esm]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules
