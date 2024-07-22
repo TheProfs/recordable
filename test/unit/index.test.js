@@ -1,6 +1,0 @@
-import './constructor.test.js'
-import './histogram.test.js'
-import './histogram_ms.test.js'
-import './historical-means.test.js'
-import './record.test.js'
-import './reset.test.js'

@@ -1,8 +1,8 @@
 import test from 'node:test'
-import { Recordable } from '../../index.js'
+import { Recordable } from '../index.js'
 
 await test('#reset()', async t => {
-  let recordable, histogram = null
+  let recordable = null
 
   t.beforeEach(() => {
     recordable = new Recordable()
