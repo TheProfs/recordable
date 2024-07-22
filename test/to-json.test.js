@@ -1,5 +1,5 @@
 import test from 'node:test'
-import { Recordable } from '../../index.js'
+import { Recordable } from '../index.js'
 
 await test('#record(val)', async t => {
   await t.test('reimporting its JSON revives it to same state', async t => {

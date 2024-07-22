@@ -1,5 +1,5 @@
 import test from 'node:test'
-import { Recordable } from '../../index.js'
+import { Recordable } from '../index.js'
 
 await test('#historicalMeans', async t => {
   let recordable, histogram = null
@@ -40,7 +40,7 @@ await test('#historicalMeans', async t => {
         })
 
         await t.test('records it', t => {
-          t.assert.strictEqual(histogram.count, 1)
+          t.assert.strictEqual(recordable.count, 1)
         })
 
         await t.test('stores the value', t => {

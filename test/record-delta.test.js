@@ -1,5 +1,5 @@
 import test from 'node:test'
-import { Recordable } from '../../index.js'
+import { Recordable } from '../index.js'
 
 const sleep = (ms = 5) => new Promise(resolve => setTimeout(resolve, ms))
 
@@ -53,7 +53,6 @@ await test('#recordDelta()', async t => {
       })
 
       await t.test('1st and last values are about ok', t => {
-        console.log(recordable)
         t.assert.ok(recordable.values.at(0) - 15 < 5) // tolerance
         t.assert.ok(recordable.values.at(-1) - 55 < 10) // tolerance
       })

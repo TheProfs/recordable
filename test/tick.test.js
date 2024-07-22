@@ -1,5 +1,5 @@
 import test from 'node:test'
-import { Recordable } from '../../index.js'
+import { Recordable } from '../index.js'
 
 await test('#tick()', async t => {
   const recordable = new Recordable()

@@ -1,5 +1,4 @@
 import { createHistogram } from 'node:perf_hooks'
-import { HistogramMs } from './histogram-ms.js'
 import asciichart from 'asciichart'
 
 class Recordable {
@@ -11,8 +10,33 @@ class Recordable {
       ? this.#createHistogramFromValues(values)
       : createHistogram()
 
-    Object.defineProperty(this, 'histogram_ms', {
-      get: function() { return new HistogramMs(this.histogram) }
+    ;[
+      ['count', ''],
+      ['exceeds', ''],
+      ['min', 'ms'],
+      ['mean', 'ms'],
+      ['max', 'ms'],
+      ['stddev', 'ms'],
+      ['percentiles', 'ms'],
+    ].forEach(([key, postfix]) => {
+      const json = this.histogram.toJSON()
+      const prop = `${key}${postfix.trim()}`
+      if (key !== 'percentiles') {
+
+        Object.defineProperty(this, prop, {
+          get: function() { return this.histogram.toJSON()[key] }
+        })
+
+        return
+      }
+
+      Object.defineProperty(this, prop, {
+        get: function() {
+          return Object.keys(json.percentiles).reduce((acc, key) => ({
+            ...acc, [key]: json.percentiles[key]
+          }))
+        }
+      })
     })
 
     this._recordFn = this.histogram.record.bind(this.histogram)
