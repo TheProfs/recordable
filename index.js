@@ -23,11 +23,12 @@ class HistogramMs {
 }
 
 class Recordable {
-  constructor({ name, values = [], histogram = null }  = {}) {
+  constructor({ name, values = [] }  = {}) {
     this.name = name
-    this.values = []
-
-    this.histogram = histogram || createHistogram()
+    this.values = values
+    this.histogram = values.length
+      ? this.#createHistogramFromValues(values)
+      : createHistogram()
 
     Object.defineProperty(this, 'histogram_ms', {
       get: function() { return new HistogramMs(this.histogram) }
@@ -86,6 +87,14 @@ class Recordable {
             .concat(this.values.at(-1))
           : acc
       }, [])
+  }
+
+  #createHistogramFromValues(values) {
+    return values.reduce((histogram, value) => {
+      histogram.record(value)
+
+      return histogram
+    }, createHistogram())
   }
 }
 
