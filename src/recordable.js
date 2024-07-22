@@ -6,6 +6,7 @@ class Recordable {
     this.name = name
     this.values = values
     this.deltaKeys = {}
+    this.percentiles = {}
     this.histogram = values.length
       ? this.#createHistogramFromValues(values)
       : createHistogram()
@@ -20,18 +21,21 @@ class Recordable {
       ['percentiles', 'ms'],
     ].forEach(([key, postfix]) => {
       const json = this.histogram.toJSON()
-      const prop = `${key}${postfix.trim()}`
+      const prop = `${key}_${postfix.trim()}`
       if (key !== 'percentiles') {
-
-        Object.defineProperty(this, prop, {
-          get: function() { return this.histogram.toJSON()[key] }
+        ;[key, postfix ? `${key}_${postfix.trim()}` : null].forEach(prop => {
+          if (prop) Object.defineProperty(this, prop, {
+            get: function() { return this.histogram.toJSON()[key] }
+          })
         })
 
         return
       }
 
-      Object.defineProperty(this, prop, {
+      Object.defineProperty(this, key, {
         get: function() {
+          const json = this.histogram.toJSON()
+
           return Object.keys(json.percentiles).reduce((acc, key) => ({
             ...acc, [key]: json.percentiles[key]
           }))

@@ -1,6 +1,7 @@
 import './constructor.test.js'
 import './record-delta.test.js'
 import './histogram.test.js'
+import './histogram-values.test.js'
 import './clamped-averages.test.js'
 import './to-json.test.js'
 import './record.test.js'
