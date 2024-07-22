@@ -1,5 +1,6 @@
 import test from 'node:test'
 import { Recordable } from '../../index.js'
+import asciichart from 'asciichart'
 
 await test('#reset()', async t => {
   let recordable = null

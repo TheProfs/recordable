@@ -1,4 +1,5 @@
 import { createHistogram } from 'node:perf_hooks'
+import asciichart from 'asciichart'
 
 const nsToMs = ns => Math.round((ns + Number.EPSILON) * 100) / 100 / 1e+6
 const toDecimal = num => Math.round((num + Number.EPSILON) * 100) / 100
@@ -42,6 +43,10 @@ class Recordable {
     }
   }
 
+  count() {
+    return this.record(1)
+  }
+
   record(val) {
     return this.histogram.record(val)
   }
@@ -49,6 +54,18 @@ class Recordable {
   reset() {
     this.values = []
     return this.histogram.reset()
+  }
+
+  plot () {
+    const width  = process.stdout.columns - 40
+    const height = process.stdout.rows - 15
+    const values = this.toHistoricalMeans(width)
+
+    console.clear()
+    console.log(
+      '\n'.repeat(5), asciichart.plot(values,
+      { height, colors: [ asciichart.green ] }
+    ))
   }
 
   toHistoricalMeans(maxLength) {
