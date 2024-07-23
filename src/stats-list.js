@@ -6,7 +6,9 @@ class StatsList {
       ['foo.mean', 'Mean Task Duration (ms)'],
       ['bar.count', 'Total Count']
     ]
-  } = {}) {
+  } = {}, statsStore = null) {
+    this.statsStore = statsStore
+
     this.title = title
     this.subtitle = subtitle
     this.maxRows = maxRows
@@ -17,6 +19,10 @@ class StatsList {
   }
 
   render() {
+    const rows = this.statsStore
+      ? this.statsStore.toClampedAverages(this.maxRows),
+      : this.rows.slice(this.rows.length - this.maxRows, this.rows.length)
+
     const values = this.rows
       .sort(this.sort)
       .slice(this.rows.length - this.maxRows, this.rows.length)
