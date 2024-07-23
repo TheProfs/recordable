@@ -111,6 +111,13 @@ class RecordableGroup {
       .filter(value => value instanceof Recordable)
   }
 
+  bindForUpdates({ type, name, val }) {
+    if (type !== 'value:recorded')
+      return
+    console.log(type, name, value)
+    return applyRemotePatch({ name, val })
+  }
+
   on(...args) {
     return this.ee.on(...args)
   }
