@@ -20,7 +20,9 @@ class RowViewer {
             const split = field[0].split('.')
             return {
               ...acc,
-              [field[1]] : row[split[0]][split[1]]
+              [field[1]] : row[2]
+                ? row[2](row[split[0]][split[1]])
+                : row[split[0]][split[1]]
             }
           }, {})
         })
@@ -38,6 +40,8 @@ class RowViewer {
 
       if (subtitle)
         console.log(subtitle)
+
+      console.log('\n', '\n')
     }, updateInterval)
   }
 
