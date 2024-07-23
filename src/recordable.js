@@ -132,6 +132,7 @@ class Recordable {
   }
 
   applyRemotePatch({ name, val }) {
+    console.log(name, this.name)
     if (name !== this.name)
       throw RangeError('name mismatch')
 
