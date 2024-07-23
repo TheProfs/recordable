@@ -1,4 +1,5 @@
 import { Recordable } from './src/recordable.js'
-import { RecordableGroup } from './src/recordable-group.js'
+import { RecordableRow } from './src/recordable-row.js'
+import RowViewer from './src/row-viewer.js'
 
-export { Recordable, RecordableGroup }
+export { Recordable, RecordableRow, RowViewer }
