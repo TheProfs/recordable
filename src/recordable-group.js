@@ -1,4 +1,6 @@
+import { EventEmitter } from 'node:events'
 import { Recordable } from './recordable.js'
+
 import asciichart from 'asciichart'
 import colorlist from './colorlist.js'
 
@@ -7,8 +9,10 @@ const round = num => Math.round((num + Number.EPSILON) * 100) / 100
 
 class RecordableGroup {
   constructor(...args) {
+    this.ee = new EventEmitter()
+
     Object.assign(this, args.reduce((acc, name) => {
-      return { ...acc, [name]: new Recordable({ name }) }
+      return { ...acc, [name]: this.createNewRecordable(name) }
     }, {}))
   }
 
@@ -58,17 +62,16 @@ class RecordableGroup {
     const width  = (process.stdout.columns || 100) - 40
     const height = (process.stdout.rows || 30) - 15
     const values = this.getMembers()
-      .map((m, i) => ({
-        ...m,
-        averages: m.toClampedAverages(width),
+      .map((member, i) => ({
+        ...member,
+        averages: member.toClampedAverages(width),
         color: colors[i % colors.length],
-        name: m.name
-      })).filter(m => m.averages.length)
+        name: member.name
+      })).filter(member => member.averages.length)
 
-
-    const plot = values.map(m => m.averages).length
-      ? asciichart.plot(values.map(m => m.averages), {
-        height, colors: values.map(m => m.color)
+    const plot = values.map(member => member.averages).length
+      ? asciichart.plot(values.map(member => member.averages), {
+        height, colors: values.map(member => member.color)
       }) : null
 
     console.clear()
@@ -76,15 +79,36 @@ class RecordableGroup {
     if (!values.length)
       return console.info('not enough data to plot yet ...')
 
-    plot
-      ? console.log('\n'.repeat(5), plot)
-      : console.info('\n'.repeat(5), 'not enough plot data yet ...')
+    plot ? console.log('\n'.repeat(5), plot)
+         : console.info('\n'.repeat(5), 'not enough plot data yet ...')
 
     return plot
   }
 
+  createNewRecordable(name) {
+    const instance = new Recordable({ name })
+
+    instance.ee.on('value:recorded', this.emitPatchEvent.bind(this))
+
+    return instance
+  }
+
+  applyRemotePatch({ name, val }) {
+    const member = this[name]
+
+    if (member)
+      member.applyRemotePatch({ name, val })
+
+    return !!member
+  }
+
+  emitPatchEvent({ name, val }) {
+    this.ee.emit('value:recorded', { name, val })
+  }
+
   getMembers() {
-    return Object.values(this).filter(value => value instanceof Recordable)
+    return Object.values(this)
+      .filter(value => value instanceof Recordable)
   }
 }
 

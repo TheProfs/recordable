@@ -1,4 +1,5 @@
 import { createHistogram } from 'node:perf_hooks'
+import { EventEmitter } from 'node:events'
 import asciichart from 'asciichart'
 
 class Recordable {
@@ -7,6 +8,7 @@ class Recordable {
     this.values = values
     this.deltaKeys = {}
     this.percentiles = {}
+    this.ee = new EventEmitter()
     this.histogram = values.length
       ? this.#createHistogramFromValues(values)
       : createHistogram()
@@ -41,11 +43,14 @@ class Recordable {
       })
     })
 
-    this._recordFn = this.histogram.record.bind(this.histogram)
+    this.histogramRecord = this.histogram.record.bind(this.histogram)
     this.histogram.record = val => {
-      const result = this._recordFn(val)
+      const result = this.histogramRecord(val)
 
       this.values.push(val)
+      this.ee.emit('value:recorded', {
+        name: this.name, val
+      })
 
       return result
     }
@@ -123,6 +128,14 @@ class Recordable {
             .concat(this.values.at(-1))
           : acc
       }, [])
+  }
+
+  applyRemotePatch({ name, val }) {
+    if (name !== this.name)
+      throw RangeError('name mismatch')
+
+    this.histogramRecord(val)
+    this.values.push(val)
   }
 
   #createHistogramFromValues(values) {
