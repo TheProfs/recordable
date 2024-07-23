@@ -8,15 +8,13 @@ class RecordableRow {
   }
 
   getMembers() {
-    return Object.values(this)
-      .filter(value => value instanceof Recordable)
+    return Object.values(this).filter(value => value instanceof Recordable)
   }
 
   getRow() {
     return this.getMembers().reduce((acc, member) => {
       return {
-        ...acc,
-        [member.name]: member.histogram.toJSON()
+        ...acc, [member.name]: member.histogram.toJSON()
       }
     }, { id: process.pid })
   }
