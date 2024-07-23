@@ -1,5 +1,6 @@
+import { StatsView } from './src/stats-view.js'
+import { StatsList } from './src/stats-list.js'
+import { StatsStore } from './src/stats-store.js'
 import { Recordable } from './src/recordable.js'
-import { RecordableRow } from './src/recordable-row.js'
-import RowViewer from './src/row-viewer.js'
 
-export { Recordable, RecordableRow, RowViewer }
+export { Recordable, StatsStore, StatsList, StatsView }

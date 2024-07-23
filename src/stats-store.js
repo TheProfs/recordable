@@ -1,6 +1,6 @@
 import { Recordable } from './recordable.js'
 
-class RecordableRow {
+class StatsStore {
   constructor(...args) {
     Object.assign(this, args.reduce((acc, name) => {
       return { ...acc, [name]: new Recordable({ name }) }
@@ -20,4 +20,4 @@ class RecordableRow {
   }
 }
 
-export { RecordableRow }
+export { StatsStore }
