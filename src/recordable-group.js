@@ -94,7 +94,7 @@ class RecordableGroup {
   }
 
   applyRemotePatch(patch) {
-    const member = this[name]
+    const member = this[patch.name]
 
     if (member)
       member.applyRemotePatch(patch)
