@@ -20,7 +20,7 @@ class StatsList {
 
   render() {
     const rows = this.statsStore
-      ? this.statsStore.toClampedAverages(this.maxRows)
+      ? [this.statsStore.getRow()]
       : this.rows.slice(this.rows.length - this.maxRows, this.rows.length)
 
     const values = this.rows
