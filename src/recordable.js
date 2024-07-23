@@ -41,9 +41,9 @@ class Recordable {
       })
     })
 
-    this._recordFn = this.histogram.record.bind(this.histogram)
+    this.histogramRecord = this.histogram.record.bind(this.histogram)
     this.histogram.record = val => {
-      const result = this._recordFn(val)
+      const result = this.histogramRecord(val)
 
       this.values.push(val)
 

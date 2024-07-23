@@ -7,34 +7,34 @@
 ## Usage
 
 ```js
-import { Recordable } from './index.js'
+import { Recordable } from '@nicholaswmin/recordable'
 
 const task = new Recordable()
-task.record(1)
-task.record(100)
 
+task.record(1)
 for (let i = 0; i < 600; i++)
   task.record(Math.round(Math.random() * 20) + 1)
+task.record(100)
 
 console.log(task.min)
 // 3.05 ms
 console.log(task.mean)
-// 11.42 ms
+// 23.42 ms
 console.log(task.max)
-// 85.17 m
+// 85.17 ms
 console.log(task.stddev)
-// 5.17 ms
+// 15.17 ms
 ```
 
 ### Plotting
 
 ```js
 const task = new Recordable()
-task.record(1)
-task.record(100)
 
+task.record(1)
 for (let i = 0; i < 600; i++)
   task.record(Math.round(Math.random() * 20) + 1)
+task.record(100)
 
 task.plot()
 ```

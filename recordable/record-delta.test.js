@@ -1,5 +1,5 @@
 import test from 'node:test'
-import { Recordable } from '../index.js'
+import { Recordable } from '../../index.js'
 
 const sleep = (ms = 5) => new Promise(resolve => setTimeout(resolve, ms))
 
