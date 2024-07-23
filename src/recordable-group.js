@@ -93,11 +93,11 @@ class RecordableGroup {
     return instance
   }
 
-  applyRemotePatch({ name, val }) {
+  applyRemotePatch(patch) {
     const member = this[name]
 
     if (member)
-      member.applyRemotePatch({ name, val })
+      member.applyRemotePatch(patch)
 
     return !!member
   }
@@ -111,11 +111,11 @@ class RecordableGroup {
       .filter(value => value instanceof Recordable)
   }
 
-  bindForUpdates({ type, name, val }) {
-    if (type !== 'value:recorded')
+  bindForUpdates(patch) {
+    if (patch && patch.type !== 'value:recorded')
       return
 
-    return applyRemotePatch({ name, val })
+    return this.applyRemotePatch(patch)
   }
 
   on(...args) {
