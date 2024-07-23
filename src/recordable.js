@@ -49,6 +49,7 @@ class Recordable {
 
       this.values.push(val)
       this.ee.emit('value:recorded', {
+        type: 'value:recorded',
         name: this.name, val
       })
 
@@ -136,6 +137,10 @@ class Recordable {
 
     this.histogramRecord(val)
     this.values.push(val)
+  }
+
+  on(...args) {
+    return this.ee.on(...args)
   }
 
   #createHistogramFromValues(values) {

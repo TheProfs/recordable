@@ -88,7 +88,7 @@ class RecordableGroup {
   createNewRecordable(name) {
     const instance = new Recordable({ name })
 
-    instance.ee.on('value:recorded', this.emitPatchEvent.bind(this))
+    instance.on('value:recorded', this.emitPatchEvent.bind(this))
 
     return instance
   }
@@ -102,13 +102,17 @@ class RecordableGroup {
     return !!member
   }
 
-  emitPatchEvent({ name, val }) {
-    this.ee.emit('value:recorded', { name, val })
+  emitPatchEvent(message) {
+    this.ee.emit('value:recorded', message)
   }
 
   getMembers() {
     return Object.values(this)
       .filter(value => value instanceof Recordable)
+  }
+
+  on(...args) {
+    return this.ee.on(...args)
   }
 }
 

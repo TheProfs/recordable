@@ -6,7 +6,7 @@ await test('#patchEvent - group', async t => {
 
   t.beforeEach(async () => {
     group = new RecordableGroup('foo', 'bar')
-    group.ee.on('value:recorded', msg => {
+    group.on('value:recorded', msg => {
       message = msg
     })
 
