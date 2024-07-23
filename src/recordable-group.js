@@ -1,4 +1,3 @@
-import { EventEmitter } from 'node:events'
 import { Recordable } from './recordable.js'
 
 import asciichart from 'asciichart'
@@ -9,10 +8,8 @@ const round = num => Math.round((num + Number.EPSILON) * 100) / 100
 
 class RecordableGroup {
   constructor(...args) {
-    this.ee = new EventEmitter()
-
     Object.assign(this, args.reduce((acc, name) => {
-      return { ...acc, [name]: this.createNewRecordable(name) }
+      return { ...acc, [name]: new Recordable({ name }) }
     }, {}))
   }
 
@@ -85,41 +82,17 @@ class RecordableGroup {
     return plot
   }
 
-  createNewRecordable(name) {
-    const instance = new Recordable({ name })
-
-    instance.on('value:recorded', this.emitPatchEvent.bind(this))
-
-    return instance
-  }
-
-  applyRemotePatch(patch) {
-    const member = this[patch.name]
-
-    if (member)
-      member.applyRemotePatch(patch)
-
-    return !!member
-  }
-
-  emitPatchEvent(message) {
-    this.ee.emit('value:recorded', message)
-  }
-
   getMembers() {
     return Object.values(this)
       .filter(value => value instanceof Recordable)
   }
 
-  bindForUpdates(patch) {
-    if (patch && patch.type !== 'value:recorded')
-      return
+  getRow() {
 
-    return this.applyRemotePatch(patch)
   }
 
-  on(...args) {
-    return this.ee.on(...args)
+  applyRow() {
+
   }
 }
 
