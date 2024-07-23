@@ -14,15 +14,11 @@ class RecordableRow {
 
   getRow() {
     return this.getMembers().reduce((acc, member) => {
-      acc.members[member.name] = {
-        histogram: member.histogram.toJSON()
+      return {
+        ...acc,
+        [member.name]: member.histogram.toJSON()
       }
-
-      return acc
-    }, {
-      id: process.pid,
-      members: []
-    })
+    }, { id: process.pid })
   }
 }
 

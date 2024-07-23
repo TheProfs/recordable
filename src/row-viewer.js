@@ -20,13 +20,14 @@ class RowViewer {
             const split = field[0].split('.')
             return {
               ...acc,
-              [field[1]] : row.members[split[0]].histogram[split[1]]
+              [field[1]] : row[split[0]][split[1]]
             }
           }, {})
         })
 
       console.clear()
       console.log('\n', '\n')
+
       if (title)
         console.log('Title:', title)
 
