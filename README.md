@@ -4,10 +4,16 @@
 
 > recordable & plottable [histogram][histogram]
 
+## Install
+
+```bash
+npm i https://github.com/TheProfs/recordable.git
+```
+
 ## Usage
 
 ```js
-import { Recordable } from './index.js'
+import { Recordable } from 'recordable'
 
 const task = new Recordable()
 
@@ -27,6 +33,8 @@ console.log(task.stddev)
 ### Plotting
 
 ```js
+import { Recordable } from 'recordable'
+
 const task = new Recordable()
 
 for (let i = 0; i < 600; i++)

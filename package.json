@@ -1,5 +1,5 @@
 {
-  "name": "@TheProfs/recordable",
+  "name": "recordable",
   "type": "module",
   "version": "0.1.0",
   "description": "recordable histogram",
