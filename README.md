@@ -10,8 +10,6 @@
 import { Recordable } from './index.js'
 
 const task = new Recordable()
-task.record(1)
-task.record(100)
 
 for (let i = 0; i < 600; i++)
   task.record(Math.round(Math.random() * 20) + 1)
@@ -30,8 +28,6 @@ console.log(task.stddev)
 
 ```js
 const task = new Recordable()
-task.record(1)
-task.record(100)
 
 for (let i = 0; i < 600; i++)
   task.record(Math.round(Math.random() * 20) + 1)
