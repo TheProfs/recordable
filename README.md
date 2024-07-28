@@ -1,6 +1,6 @@
 [![test-workflow][test-badge]][test-workflow] [![codeql-workflow][codeql-badge]][codeql-workflow]
 
-# recordable
+# :watch: recordable
 
 > recordable & plottable [histogram][histogram]
 
