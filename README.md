@@ -12,6 +12,8 @@ npm i https://github.com/TheProfs/recordable.git
 
 ## Usage
 
+### Basic
+
 ```js
 import { Recordable } from 'recordable'
 
@@ -29,6 +31,20 @@ console.log(histogram.max)
 console.log(histogram.stddev)
 // 5.17 ms
 ```
+
+### Available methods
+
+`histogram.record(value)`
+
+record a value
+
+`histogram.tick()`
+
+record a value of `1`
+
+`histogram.recordDelta(label)`
+
+record the [time delta][delta] between invocations with the same `label` value.
 
 ### Plotting
 
@@ -114,6 +130,7 @@ npm run test:coverage
 [codeql-workflow]: https://github.com/TheProfs/recordable/actions/workflows/codeql.yml
 
 [histogram]: https://en.wikipedia.org/wiki/Histogram
+[delta]: https://en.wikipedia.org/wiki/Delta_timing
 [profs]: https://github.com/TheProfs
 [nicholaswmin]: https://github.com/nicholaswmin
 [license]: ./LICENSE
