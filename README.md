@@ -2,7 +2,7 @@
 
 # recordable
 
-> recordable & plottable histogram
+> recordable & plottable [histogram][histogram]
 
 ## Usage
 
@@ -96,17 +96,20 @@ npm run test:coverage
 
 ## Authors
 
-[@nicholaswmin][nicholaswmin]
+- [@Bitpaper][profs]
+- [@nicholaswmin][nicholaswmin]
 
 ## License
 
 [MIT-0 "No Attribution" License][license]
 
-[test-badge]: https://github.com/nicholaswmin/recordable/actions/workflows/test:unit.yml/badge.svg
-[test-workflow]: https://github.com/nicholaswmin/recordable/actions/workflows/test:unit.yml
+[test-badge]: https://github.com/TheProfs/recordable/actions/workflows/test:unit.yml/badge.svg
+[test-workflow]: https://github.com/TheProfs/recordable/actions/workflows/test:unit.yml
 
-[codeql-badge]: https://github.com/nicholaswmin/recordable/actions/workflows/codeql.yml/badge.svg
-[codeql-workflow]: https://github.com/nicholaswmin/recordable/actions/workflows/codeql.yml
+[codeql-badge]: https://github.com/TheProfs/recordable/actions/workflows/codeql.yml/badge.svg
+[codeql-workflow]: https://github.com/TheProfs/recordable/actions/workflows/codeql.yml
 
+[histogram]: https://en.wikipedia.org/wiki/Histogram
+[profs]: https://github.com/TheProfs
 [nicholaswmin]: https://github.com/nicholaswmin
 [license]: ./LICENSE
