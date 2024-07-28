@@ -88,12 +88,6 @@ Nicholass-MacBook-Air:recordable nicholaswmin$
 
 ```
 
-### Install
-
-```bash
-npm i @nicholaswmin/recordable
-```
-
 ## Tests
 
 Install deps
