@@ -5,7 +5,7 @@
   "description": "recordable histogram",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test node --test test/index.test.js",
+    "test": "NODE_ENV=test node --test --test-reporter=spec test/index.test.js",
     "test:coverage": "NODE_ENV=test node --test --experimental-test-coverage test/index.test.js",
     "checks": "npx eslint && npm audit",
     "example": "node .github/example/index.js"
