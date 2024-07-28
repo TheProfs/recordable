@@ -15,18 +15,18 @@ npm i https://github.com/TheProfs/recordable.git
 ```js
 import { Recordable } from 'recordable'
 
-const task = new Recordable()
+const histogram = new Recordable()
 
 for (let i = 0; i < 600; i++)
-  task.record(Math.round(Math.random() * 20) + 1)
+  histogram.record(Math.round(Math.random() * 20) + 1)
 
-console.log(task.min)
+console.log(histogram.min)
 // 3.05 ms
-console.log(task.mean)
+console.log(histogram.mean)
 // 11.42 ms
-console.log(task.max)
+console.log(histogram.max)
 // 85.17 m
-console.log(task.stddev)
+console.log(histogram.stddev)
 // 5.17 ms
 ```
 
@@ -35,12 +35,12 @@ console.log(task.stddev)
 ```js
 import { Recordable } from 'recordable'
 
-const task = new Recordable()
+const histogram = new Recordable()
 
 for (let i = 0; i < 600; i++)
-  task.record(Math.round(Math.random() * 20) + 1)
+  histogram.record(Math.round(Math.random() * 20) + 1)
 
-task.plot()
+histogram.plot()
 ```
 
 ```console
