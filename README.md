@@ -55,7 +55,7 @@ record a value of `1`
 
 `histogram.recordDelta(label)`
 
-record the [time delta][delta] between invocations with the same `label` value.
+record the [time-delta(Δt)][delta] between invocations with the same `label` value.
 
 ### Properties
 
@@ -93,7 +93,6 @@ histogram.plot()
 ```
 
 ```console
-
 24.33 ┤╭╮
 23.27 ┤││
 22.21 ┤││
