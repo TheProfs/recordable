@@ -22,13 +22,24 @@ const histogram = new Recordable()
 for (let i = 0; i < 600; i++)
   histogram.record(Math.round(Math.random() * 20) + 1)
 
+console.log(histogram.count)
+// count of invocations
+// 600
+
 console.log(histogram.min)
+// minimum recorded value
 // 3.05 ms
-console.log(histogram.mean)
-// 11.42 ms
+
 console.log(histogram.max)
+// maximum recorded value
 // 85.17 m
+
+console.log(histogram.mean)
+// Arithmetic mean/average
+// 11.42 ms
+
 console.log(histogram.stddev)
+// statistical standard deviation between all values
 // 5.17 ms
 ```
 
@@ -45,6 +56,28 @@ record a value of `1`
 `histogram.recordDelta(label)`
 
 record the [time delta][delta] between invocations with the same `label` value.
+
+### Properties
+
+`histogram.count`
+
+Number of recorded values
+
+`histogram.min`
+
+Minimum recorded value
+
+`histogram.max`
+
+Maximum recorded value
+
+`histogram.mean`
+
+[*Arithmetic mean/average][mean] between all recorded values
+
+`histogram.stddev`
+
+Statistical [*standard deviation*][stddev] between all recorded values
 
 ### Plotting
 
@@ -125,6 +158,8 @@ npm run test:coverage
 
 [histogram]: https://en.wikipedia.org/wiki/Histogram
 [delta]: https://en.wikipedia.org/wiki/Delta_timing
+[mean]: https://en.wikipedia.org/wiki/Mean
+[stddev]: https://en.wikipedia.org/wiki/Standard_deviation
 [profs]: https://github.com/TheProfs
 [nicholaswmin]: https://github.com/nicholaswmin
 [license]: ./LICENSE
