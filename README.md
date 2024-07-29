@@ -60,27 +60,6 @@ value.\
 Can be called without a `label` parameter, in which case it records the
 `time-delta` since the last invocation without a label parameter.
 
-### Properties
-
-`histogram.count`
-
-Number of recorded values
-
-`histogram.min`
-
-Minimum recorded value
-
-`histogram.max`
-
-Maximum recorded value
-
-`histogram.mean`
-
-[*Arithmetic mean/average][mean] between all recorded values
-
-`histogram.stddev`
-
-Statistical [*standard deviation*][stddev] between all recorded values
 
 ### Plotting
 
