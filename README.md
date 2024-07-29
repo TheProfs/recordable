@@ -60,6 +60,14 @@ value.\
 Can be called without a `label` parameter, in which case it records the
 `time-delta` since the last invocation without a label parameter.
 
+`histogram.reset()`
+
+does exactly what you think it does
+
+`histogram.plot()`
+
+produce an ASCII plot of the `mean` of all values.\
+See below.
 
 ### Plotting
 
