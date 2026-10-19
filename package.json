@@ -7,7 +7,7 @@
   "scripts": {
     "test": "NODE_ENV=test node --test --test-reporter=spec test/index.test.js",
     "test:coverage": "NODE_ENV=test node --test --experimental-test-coverage test/index.test.js",
-    "checks": "npx eslint && npm audit",
+    "checks": "npm audit",
     "example": "node .github/example/index.js"
   },
   "engines": {
@@ -24,11 +24,6 @@
     "url": "https://github.com/TheProfs/recordable/issues"
   },
   "homepage": "https://github.com/TheProfs/recordable#readme",
-  "devDependencies": {
-    "@eslint/js": "^9.7.0",
-    "eslint": "^9.7.0",
-    "globals": "^15.8.0"
-  },
   "dependencies": {
     "asciichart": "^1.5.25"
   }
